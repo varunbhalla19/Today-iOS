@@ -5,7 +5,7 @@
 import UIKit
 
 class ReminderListDataSource: NSObject {
-    
+    private lazy var dateFormatter = RelativeDateTimeFormatter()
 }
 
 extension ReminderListDataSource: UITableViewDataSource {
@@ -22,8 +22,8 @@ extension ReminderListDataSource: UITableViewDataSource {
         }
         
         let data = Task.testData[indexPath.row]
-        
-        cell.configure(title: data.title, date: data.dueDate.description, isComplete: data.isComplete, doneAction: {
+        let dateText = dateFormatter.localizedString(for: data.dueDate, relativeTo: Date())
+        cell.configure(title: data.title, date: dateText, isComplete: data.isComplete, doneAction: {
             Task.testData[indexPath.row].isComplete.toggle()
             tableView.reloadRows(at: [indexPath], with: .fade)
         })
