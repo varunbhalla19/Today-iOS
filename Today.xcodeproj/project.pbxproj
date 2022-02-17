@@ -18,6 +18,10 @@
 		D57ADB1627B90B1400F0EA89 /* ReminderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D57ADB1527B90B1400F0EA89 /* ReminderDetailViewController.swift */; };
 		D58B6CE227BADBA80013D453 /* ReminderListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58B6CE127BADBA80013D453 /* ReminderListDataSource.swift */; };
 		D5F4143627BD6AF20045EA70 /* ReminderDetailViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4143527BD6AF20045EA70 /* ReminderDetailViewDataSource.swift */; };
+		D5F4143827BD7EA30045EA70 /* EditTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4143727BD7EA30045EA70 /* EditTitleCell.swift */; };
+		D5F4143A27BD7EC30045EA70 /* EditNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4143927BD7EC30045EA70 /* EditNoteCell.swift */; };
+		D5F4143C27BD7EDD0045EA70 /* EditDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4143B27BD7EDD0045EA70 /* EditDateCell.swift */; };
+		D5F4143E27BD84220045EA70 /* ReminderDetailEditDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F4143D27BD84220045EA70 /* ReminderDetailEditDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +38,10 @@
 		D57ADB1527B90B1400F0EA89 /* ReminderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailViewController.swift; sourceTree = "<group>"; };
 		D58B6CE127BADBA80013D453 /* ReminderListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderListDataSource.swift; sourceTree = "<group>"; };
 		D5F4143527BD6AF20045EA70 /* ReminderDetailViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailViewDataSource.swift; sourceTree = "<group>"; };
+		D5F4143727BD7EA30045EA70 /* EditTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTitleCell.swift; sourceTree = "<group>"; };
+		D5F4143927BD7EC30045EA70 /* EditNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNoteCell.swift; sourceTree = "<group>"; };
+		D5F4143B27BD7EDD0045EA70 /* EditDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDateCell.swift; sourceTree = "<group>"; };
+		D5F4143D27BD84220045EA70 /* ReminderDetailEditDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderDetailEditDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +86,10 @@
 				D57ADB1527B90B1400F0EA89 /* ReminderDetailViewController.swift */,
 				D58B6CE127BADBA80013D453 /* ReminderListDataSource.swift */,
 				D5F4143527BD6AF20045EA70 /* ReminderDetailViewDataSource.swift */,
+				D5F4143727BD7EA30045EA70 /* EditTitleCell.swift */,
+				D5F4143927BD7EC30045EA70 /* EditNoteCell.swift */,
+				D5F4143B27BD7EDD0045EA70 /* EditDateCell.swift */,
+				D5F4143D27BD84220045EA70 /* ReminderDetailEditDataSource.swift */,
 			);
 			path = Today;
 			sourceTree = "<group>";
@@ -155,12 +167,16 @@
 			files = (
 				D57ADB1227B8DC7500F0EA89 /* Task.swift in Sources */,
 				D57ADB1427B8EF7600F0EA89 /* ReminderListCell.swift in Sources */,
+				D5F4143827BD7EA30045EA70 /* EditTitleCell.swift in Sources */,
+				D5F4143C27BD7EDD0045EA70 /* EditDateCell.swift in Sources */,
 				D538C8CE27B7BB220089A9D7 /* ReminderListViewController.swift in Sources */,
 				D57ADB1627B90B1400F0EA89 /* ReminderDetailViewController.swift in Sources */,
 				D5F4143627BD6AF20045EA70 /* ReminderDetailViewDataSource.swift in Sources */,
 				D538C8CA27B7BB220089A9D7 /* AppDelegate.swift in Sources */,
+				D5F4143A27BD7EC30045EA70 /* EditNoteCell.swift in Sources */,
 				D538C8CC27B7BB220089A9D7 /* SceneDelegate.swift in Sources */,
 				D58B6CE227BADBA80013D453 /* ReminderListDataSource.swift in Sources */,
+				D5F4143E27BD84220045EA70 /* ReminderDetailEditDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
