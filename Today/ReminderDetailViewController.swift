@@ -6,11 +6,16 @@ import UIKit
 
 class ReminderDetailViewController: UITableViewController {
     
-    private var reminder: Task?
-    private var dataSource: UITableViewDataSource?
+    typealias TaskUpdate = (Task) -> ()
     
-    func configure(with reminder: Task){
+    private var reminder: Task?
+    private var tempReminder: Task?
+    private var dataSource: UITableViewDataSource?
+    private var taskUpdateAction: TaskUpdate?
+    
+    func configure(with reminder: Task, updateTask: @escaping TaskUpdate){
         self.reminder = reminder
+        self.taskUpdateAction = updateTask
     }
     
     override func viewDidLoad() {
@@ -28,11 +33,21 @@ class ReminderDetailViewController: UITableViewController {
         }
         
         if editing {
-            self.dataSource = ReminderDetailEditDataSource(reminder: task)
+            self.dataSource = ReminderDetailEditDataSource(reminder: task){ reminder in
+                self.tempReminder = reminder
+                self.editButtonItem.isEnabled = true
+            }
             navigationItem.title = "Edit Reminder"
             navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPressed))
         }else {
-            self.dataSource = ReminderDetailViewDataSource(task: task)
+            if let tempReminder = tempReminder {
+                self.reminder = tempReminder
+                self.tempReminder = nil
+                self.taskUpdateAction?(tempReminder)
+                self.dataSource = ReminderDetailViewDataSource(task: tempReminder)
+            }else {
+                self.dataSource = ReminderDetailViewDataSource(task: task)
+            }
             navigationItem.leftBarButtonItem = nil
             navigationItem.title = "View Reminder"
             editButtonItem.isEnabled = true

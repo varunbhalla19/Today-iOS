@@ -9,9 +9,18 @@ class ReminderListViewController: UITableViewController {
         if segue.identifier == Self.segueIdentifier,
         let destination = segue.destination as? ReminderDetailViewController,
         let cell = sender as? UITableViewCell,
-        let index = tableView.indexPath(for: cell)?.row {
-            let task = Task.testData[index]
-            destination.configure(with: task)
+           
+        let indexPath = tableView.indexPath(for: cell) {
+            let row = indexPath.row
+            
+            guard let task = self.dataSource?.reminder(at: row) else {
+                fatalError("Can't find Task lol!")
+            }
+            
+            destination.configure(with: task){task in
+                self.dataSource?.update(task, at: row)
+                self.tableView.reloadRows(at: [indexPath], with: .automatic)
+            }
         }
     }
     
