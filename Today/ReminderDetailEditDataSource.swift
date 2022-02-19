@@ -6,6 +6,8 @@ import UIKit
 
 class ReminderDetailEditDataSource: NSObject {
     
+    typealias ReminderUpdateAction = (Task) -> ()
+    
     enum ReminderEditSection: Int, CaseIterable {
         case title
         case date
@@ -47,6 +49,7 @@ class ReminderDetailEditDataSource: NSObject {
     }
     
     var reminder: Task
+    private var updateReminder: ReminderUpdateAction?
     
     private lazy var formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -55,8 +58,9 @@ class ReminderDetailEditDataSource: NSObject {
         return formatter
     }()
 
-    init(reminder: Task) {
+    init(reminder: Task, updateReminderAction: @escaping ReminderUpdateAction) {
         self.reminder = reminder
+        self.updateReminder = updateReminderAction
     }
     
     private func dequeueAndConfigureCell(for indexPath: IndexPath, from tableView: UITableView) -> UITableViewCell {
@@ -70,19 +74,30 @@ class ReminderDetailEditDataSource: NSObject {
         switch section {
         case .title:
             if let titleCell = cell as? EditTitleCell {
-                titleCell.config(title: reminder.title)
+                titleCell.config(title: reminder.title){ title in
+                    self.reminder.title = title
+                    self.updateReminder?(self.reminder)
+                }
             }
         case .date:
             if( indexPath.row == 0 ){
                 cell.textLabel?.text = formatter.string(from: reminder.dueDate)
             }else {
                 if let dateCell = cell as? EditDateCell {
-                    dateCell.config(date: reminder.dueDate)
+                    dateCell.config(date: reminder.dueDate){ date in
+                        self.reminder.dueDate = date
+                        self.updateReminder?(self.reminder)
+                        let localIndexpath = IndexPath(row: 0, section: section.rawValue)
+                        tableView.reloadRows(at: [localIndexpath], with: .automatic)
+                    }
                 }
             }
         case .notes:
             if let notesCell = cell as? EditNotesCell {
-                notesCell.config(note: reminder.notes)
+                notesCell.config(note: reminder.notes){ note in
+                    self.reminder.notes = note
+                    self.updateReminder?(self.reminder)
+                }
             }
         }
         
